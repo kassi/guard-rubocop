@@ -61,7 +61,7 @@ all_on_start: true     # Check all files at Guard startup.
 cli: '--rails'         # Pass arbitrary RuboCop CLI arguments.
                        # An array or string is acceptable.
                        #   default: nil
-cmd: './bin/rubocop'   # Pass custom cmd to run rubocop.
+cmd: './bin/rubocop'   # Pass custom cmd to run rubocop as String or Array.
                        #   default: rubocop
 
 hide_stdout: false     # Do not display console output (in case outputting to file).
@@ -84,6 +84,17 @@ Configure your Guardfile with the launchy option:
 
 ``` ruby
 guard :rubocop, cli: %w(--format fuubar --format html -o ./tmp/rubocop_results.html), launchy: './tmp/rubocop_results.html' do
+  # ...
+end
+```
+
+### Running with Bundler
+
+guard-rubocop can be configured to run with bundler.
+Configure your Guardfile with the cmd option:
+
+``` ruby
+guard :rubocop, cmd: %w(bundle exec guard) do
   # ...
 end
 ```
