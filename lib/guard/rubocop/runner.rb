@@ -38,6 +38,7 @@ module Guard
         command << '--force-exclusion'
         command.concat(args_specified_by_user)
         command.concat(paths)
+        command.flatten
       end
 
       def should_add_default_formatter_for_console?

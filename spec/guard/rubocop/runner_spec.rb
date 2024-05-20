@@ -118,6 +118,16 @@ RSpec.describe Guard::RuboCop::Runner do
         end
       end
 
+      context 'when set as array' do
+        let(:options) { { cmd: %w[bundle exec rubocop] } }
+
+        it 'uses the supplied :cmd' do
+          expect(build_command[0]).to eq('bundle')
+          expect(build_command[1]).to eq('exec')
+          expect(build_command[2]).to eq('rubocop')
+        end
+      end
+
       context 'when not set' do
         it 'uses the default command' do
           expect(build_command[0]).to eq('rubocop')
